@@ -33,6 +33,7 @@ import mutagen.apev2
 from mp3tool.scanner import (scan_mp3, AudioFrame, Tag, UnknownData,
                              MODE_SINGLE_CHANNEL, MODE_DUAL_CHANNEL,
                              MODE_JOINT_STEREO, MODE_STEREO)
+import mp3tool.version
 
 logger = _logging.getLogger("mp3tool.tool")
 
@@ -1075,6 +1076,8 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv
     parser = argparse.ArgumentParser(prog=argv[0])
+    parser.add_argument("--version", action="version",
+                        version=mp3tool.version.__version__)
     parser.add_argument("--debug", dest="log_level", default=_logging.INFO,
                         action="store_const", const=_logging.DEBUG)
     subparsers = parser.add_subparsers()
